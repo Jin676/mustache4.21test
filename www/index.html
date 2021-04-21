@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="domStr"></div>
+
+    <script src="/xuni/bundle.js"></script>
+    <script>
+        var templateStr = `
+           <div class="aa">
+                <ol> 
+                    {{#students}}
+                    <li>
+                        学生{{name}}的哀嚎是
+                        <ol>
+                            {{#hobbies}}
+                            <li>{{.}}</li>
+                            {{/hobbies}}
+                        </ol>
+                    </li>
+                    {{/students}}
+                </ol>
+            </div>                
+        `
+        var data = {
+            students:[
+                {"name":"小米","hobbies":["游泳","健身"]},
+                {"name":"小红","hobbies":["足球","篮球","羽毛球"]},
+                {"name":"小的","hobbies":["吃饭","睡觉"]},
+            ]
+        }
+
+        // var templateStr = `我爱{{somebody}},{{somebody}}也爱我,我考了{{a.b.c}}`
+        // var data = {
+        //     somebody:"嘻嘻",
+        //     a:{
+        //         b:{
+        //             c:100
+        //         }
+        //     }
+        // }
+
+        var a = TemplateEngine.render(templateStr,data)
+
+          var domstr =  document.getElementById("domStr")
+            domstr.innerHTML = a
+            console.log(a)
+    </script>
+</body>
+</html>
